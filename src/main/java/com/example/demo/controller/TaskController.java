@@ -1,5 +1,7 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.Task;
+import com.example.demo.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import jakarta.persistence.ElementCollection;
