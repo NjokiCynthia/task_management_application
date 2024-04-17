@@ -15,13 +15,14 @@ public class TaskController {
 
     @Autowired
     TaskRepository taskRepository;
-
+// Get all tasks
     @GetMapping("/task")
     @ElementCollection
     public List<Task> index(){
         return taskRepository.findAll();
     }
 
+// Find task by id
     @GetMapping("/task/{id}")
     public Task show(@PathVariable String id){
         int taskId = Integer.parseInt(id);
@@ -36,7 +37,7 @@ public class TaskController {
         return  taskRepository.findById(taskId).get();
     }
 
-
+//Create a new task
     @PostMapping("/task")
     public Task create(@RequestBody Map<String, String> body) {
         String date = body.get("date");
@@ -46,7 +47,7 @@ public class TaskController {
         return taskRepository.save(new Task(date, task, priority, status));
     }
 
-
+//Update task
     @PutMapping("/task/{id}")
     public Task update(@PathVariable String id, Map<String, String> body){
         int taskId = Integer.parseInt(id);
@@ -57,7 +58,7 @@ public class TaskController {
         task.setStatus(body.get("status"));
         return taskRepository.save(task);
     }
-
+//Delete task
     @DeleteMapping("task/{id}")
     public boolean delete(@PathVariable String id){
         int taskId = Integer.parseInt(id);
@@ -71,17 +72,7 @@ public class TaskController {
         return taskRepository.findAll();
     }
 
-    @PostMapping("/task/update")
-    public Task updateTask(Map<String, String> body){
-        int taskId = Integer.parseInt(body.get("id"));
-        // getting task
-        Task task = taskRepository.findById(taskId).get();
-        task.setDate(body.get("date"));
-        task.setTask(body.get("task"));
-        task.setPriority(body.get("priority"));
-        task.setStatus(body.get("status"));
-        return taskRepository.save(task);
-    }
+    //Delete task
 
     @PostMapping("task/delete")
     public boolean deleteTask(Map<String, String> body){
