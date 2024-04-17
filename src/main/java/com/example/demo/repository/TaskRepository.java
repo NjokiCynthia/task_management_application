@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    // custom query to search to blog post by title or content
+    // custom query to search to task by maybe priority or status
     List<Task> findByTitleContainingOrContentContaining(String text, String textAgain);
 }
